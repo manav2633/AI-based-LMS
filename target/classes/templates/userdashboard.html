@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title> LMS SYSTEM</title>
   <meta charset="utf-8">
@@ -60,6 +60,7 @@
             </ul>
           </li> -->
           <li class="menu-item"><a href="./contact.html">Contact</a></li>
+          <li class="menu-item"><a href="./profile.html">Profile</a></li>
           <li class="menu-item"><a href="/organiser/logout">Logout</a></li>
           <li class="menu-item"><a href="./contact.html"><i class="fa fa-fw fa-user"></i></a></li>
         </ul>
@@ -91,9 +92,9 @@
         <div class="col-md-6">
           <div class="banner-text">
             <h2 class="mb-3">The knowledge pays the best interest.</h2>
-            <h1 class="mb-3 text-capitalize">Welcome Traniee</h1>
+            <h1 class="mb-3 text-capitalize">Welcome <span th:text="${name}"></span></h1>
             <p class="mb-4">Enroll In Program And Increase Your knowledge</p>
-            <a href="./courses.html" class="btn btn-theme">Enroll Program</a>
+            <a href="./enroll_program" class="btn btn-theme">Enroll Program</a>
           </div>
         </div>
         <div class="col-md-6 order-first order-md-last mb-5 mb-md-0">

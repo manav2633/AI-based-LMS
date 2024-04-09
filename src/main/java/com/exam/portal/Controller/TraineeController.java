@@ -1,5 +1,6 @@
 package com.exam.portal.Controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.exam.portal.Model.AdminUser;
 import com.exam.portal.Model.trainee;
+import com.exam.portal.Repository.AdminUserRepo;
 import com.exam.portal.Repository.traineeRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +25,8 @@ public class TraineeController {
 
     @Autowired
     traineeRepository traineeRepository;
+    @Autowired
+	AdminUserRepo adminUserRepo;
     
     @GetMapping("/organiser/user")
     public String traineeView(Model model) {
@@ -32,9 +37,16 @@ public class TraineeController {
 
     @PostMapping("/trainee_sign_up")
     public String TraineeSignup(@ModelAttribute trainee trainee) {
+        AdminUser org=new AdminUser();
+        org.setCreatedate(new Date());
+        org.setName(trainee.getName());
+        org.setEmail(trainee.getEmail());
+        org.setPassword(new Encrypt().sha256(trainee.getPassword()));
+        org.setRole("trainee");
+        adminUserRepo.save(org);
         traineeRepository.save(trainee);
         
-        return "organiserlogin";
+        return "redirect:/organiserlogin";
     }
     
 

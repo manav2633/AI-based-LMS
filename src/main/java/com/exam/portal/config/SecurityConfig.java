@@ -67,7 +67,7 @@ public class SecurityConfig  {
         http.authorizeHttpRequests(
                 request -> request
                         .requestMatchers(
-				        "/webjars/**","/img/**","/video/**","/js/**","/webfonts/**","/css/**" , "/","/trainee_signup","/sign-up.html","/sign-up-trainee.html","/contact.html","/exam","/goto/exam","/courses-details.html","/organiser/organization/register").permitAll()
+				        "/webjars/**","/img/**","/video/**","/js/**","/webfonts/**","/css/**" , "/","/trainee_signup","/sign-up.html","/sign-up-trainee.html","/contact.html","/exam","/goto/exam","/courses-details.html","/organiser/organization/register","/trainee_sign_up").permitAll()
                         .requestMatchers("admindashboard").hasAnyRole("admin","superadmin")
                         .requestMatchers("organizationdashboard").hasAnyRole("organization")
                         .requestMatchers("userdashboard").hasAnyRole("trainee")

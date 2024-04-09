@@ -1,5 +1,7 @@
 package com.exam.portal.Controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.exam.portal.Model.AdminUser;
+import com.exam.portal.Repository.AdminUserRepo;
 import com.exam.portal.Repository.OrganizationRepository;
 
 
@@ -16,6 +20,9 @@ public class AdminController {
 
     @Autowired
     OrganizationRepository orgrepo;
+
+	@Autowired
+	AdminUserRepo adminUserRepo;
 
     @GetMapping("admindashboard")
     public String showadminDashboard(Model model) {
@@ -41,7 +48,13 @@ public class AdminController {
     }
 
 	@GetMapping("userdashboard")
-    public String showUserDashboard(Model model) {
+    public String showUserDashboard(Model model,Principal principal) {
+		String email=principal.getName();
+
+		AdminUser user=adminUserRepo.findByEmail(email);
+		String name=user.getName();
+		model.addAttribute("name", name);
+
 		System.out.println("user dashboard");
       	return "userdashboard";
     }

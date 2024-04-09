@@ -29,6 +29,10 @@ public class AppController {
 	public String CourseDetails() {
 		return "courses-details.html";
 	}
+	@GetMapping("/profile.html")
+	public String Profile() {
+		return "profile.html";
+	}
 
 	
 	@GetMapping("/contact.html")

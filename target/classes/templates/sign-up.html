@@ -102,7 +102,7 @@
                 </div>
                 <div class="form-group">
                   <label for="organizationSelect">Organization</label>
-                  <select id="organizationSelect" class="form-control"  required>
+                  <select id="organizationSelect" name="organizationId" class="form-control"  required>
                       <option th:each="orgName : ${organizationNames}" th:text="${orgName.organization_name}" th:value="${orgName.organizationId}"></option>
                   </select>
               </div>

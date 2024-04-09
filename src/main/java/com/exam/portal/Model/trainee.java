@@ -74,37 +74,7 @@ public class trainee {
     //  @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date createddate;
 
-    private Integer organizationName;
-    
-
-    public trainee() {
-    }
-
-    public trainee(Integer id, String name, String email, String password, String confirmpassxword, String phoneno,
-            String dob, String photo, String residentialaddress, String permenantaddress, String district,
-            String pincode, String state, String aadharcardno, String aadharcardfile, String enrollmentno,
-            String idcardphoto, String abcid, Date createddate, Integer organizationName) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.confirmpassword = confirmpassxword;
-        this.phoneno = phoneno;
-        this.dob = dob;
-        this.photo = photo;
-        this.residentialaddress = residentialaddress;
-        this.permenantaddress = permenantaddress;
-        this.district = district;
-        this.pincode = pincode;
-        this.state = state;
-        this.aadharcardno = aadharcardno;
-        this.aadharcardfile = aadharcardfile;
-        this.enrollmentno = enrollmentno;
-        this.idcardphoto = idcardphoto;
-        this.abcid = abcid;
-        this.createddate = createddate;
-        this.organizationName = organizationName;
-    }
+    private Integer organizationId;
 
     public Integer getId() {
         return id;
@@ -138,11 +108,11 @@ public class trainee {
         this.password = password;
     }
 
-    public String getConfirmpassxword() {
+    public String getConfirmpassword() {
         return confirmpassword;
     }
 
-    public void setConfirmpassxword(String confirmpassword) {
+    public void setConfirmpassword(String confirmpassword) {
         this.confirmpassword = confirmpassword;
     }
 
@@ -258,17 +228,16 @@ public class trainee {
         this.createddate = createddate;
     }
 
-    public Integer getOrganizationName() {
-        return organizationName;
+    public Integer getOrganizationId() {
+        return organizationId;
     }
 
-    public void setOrganizationName(Integer organizationName) {
-        this.organizationName = organizationName;
+    public void setOrganizationId(Integer organizationId) {
+        this.organizationId = organizationId;
     }
-
     
 
-    
+  
     
 
 }

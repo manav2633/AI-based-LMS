@@ -47,6 +47,13 @@ public class ProgramController {
 
 	@Autowired
 	JdbcTemplate template;
+
+
+	@GetMapping("/enroll_program")
+	public String EnrollProgram() {
+		return "enroll_program";
+	}
+	
 	
 
 	@GetMapping("/programview")

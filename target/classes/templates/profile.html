@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title> Log In </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+   <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" class="js-color-style" href="css/colors/color-1.css">
+  <link rel="stylesheet" class="js-glass-style" href="./css/glass.css" disabled>
+ 
+</head>
+<body>
+    
+  <!-- page loader start -->
+  <div class="page-loader js-page-loader">
+    <div></div>
+  </div>
+  <!-- page loader end -->
+
+    <!--main warpper start-->
+<div class="main-wrapper">
+
+  <!-- header start-- -->
+  <header class="header">
+    <div class="container">
+      <div class="header-main d-flex justify-content-between align-items-center">
+       <div class="header-logo">
+        <a href="./index.html">LMS<span>SYSTEM</span></a>
+       </div>
+       <button type="button" class="header-hamburger-btn js-header-manu-toggler">
+        <span></span>
+       </button>
+       <div class="header-backdrop js-header-backdrop"></div>
+       <nav class="header-menu js-header-manu">
+        <button type="button " class="header-close-btn js-header-manu-toggler">
+          <i class="fas fa-times"></i>
+        </button>
+        <ul class="menu">
+          <li class="menu-item"><a href="/userdashboard">Home</a></li>
+          <!-- <li class="menu-item"><a href="./courses.html">Courses</a></li> -->
+          <li class="menu-item menu-item menu-item-has-children">
+            <a href="#" class="js-toggle-sub-menu">registration / login<i class="fas fa-chevron-down"></i></a>
+            <ul class="sub-menu js-sub-menu">
+              <li class="sub-menu-item"><a href="log-in.html">Log in</a></li>
+              <li class="sub-menu-item"><a href="sign-up.html">Sign up</a></li>
+
+            </ul>
+          </li>
+          <li class="menu-item"><a href="./contact.html">Contact</a></li>
+          <li class="menu-item"><a href="./profile.html">Contact</a></li>
+        </ul>
+       </nav>
+      </div>
+    </div>
+  </header>
+  <!-- header end-- -->
+
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-nav">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/userdashboard">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">profile</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <!-- breadcrumb end -->
+
+
+    <hr>
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-10">
+                <h1>Profile Page</h1>
+            </div>
+            <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image"
+                        class="img-circle img-responsive" src="https://bisag-n.gov.in/images/logos/bisag_logo.png"></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><!--left col-->
+
+
+                <div class="text-center">
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+                        alt="avatar">
+                    <h6>Upload a different photo...</h6>
+                    <input type="file" class="text-center center-block file-upload">
+                </div>
+                </hr><br>
+
+
+
+
+            </div><!--/col-3-->
+            <div class="col-sm-9">
+              <nav class="course-tabs">
+                <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
+            <!-- <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Profile Details</a></li>
+                <li><a data-toggle="tab" href="#messages">Documents</a></li>
+                <li><a data-toggle="tab" href="#settings">Privacy Setting </a></li>
+            </ul> -->
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="course-curriculum" aria-selected="true">Profile Details</button>
+            <button class="nav-link"  data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="course-description" aria-selected="false">ID Proof</button>
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="course-instructor" aria-selected="false">Privacy settings</button>
+            
+               </div>
+            </nav>
+
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <hr>
+                        <form class="form" action="##" method="post" id="registrationForm">
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Organization_Id">
+                                        <h4>Organization-Id</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="Organization_Id" id="Organization_Id"
+                                        placeholder="organization id " title="enter your organization id if any." required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Reg_Date">
+                                        <h4>Registration-Date</h4>
+                                    </label>
+                                    <input type="datetime-local" class="form-control" name="reg_date" id="Reg_Date"
+                                        placeholder="Registration-Date" title="enter your registration date if any." required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Full_name">
+                                        <h4>Full_Name</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="fullname" id="fullname"
+                                        placeholder="enter fullname" title="enter your fullname if any." required>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="email">
+                                        <h4>Email-Id</h4>
+                                    </label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="you@email.com" title="enter your email." required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="password">
+                                        <h4>Password</h4>
+                                    </label>
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="password" title="enter your password." required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="mobile">
+                                        <h4>Phone_No</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="mobile" id="mobile"
+                                        placeholder="enter mobile number" title="enter your mobile number if any." required>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Birthdate">
+                                        <h4>Birth_Date</h4>
+                                    </label>
+                                    <input type="date" class="form-control" name="Birthdate" id="Birthdate"
+                                        placeholder="Birthdate" title="enter your Birthdate." required>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Photo">
+                                        <h4>Photo</h4>
+                                    </label>
+                                    <input type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control"
+                                        name="Photo" id="Photo" placeholder="Photo" title="enter your Photo." required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Address_1">
+                                        <h4>Address_1</h4>
+                                    </label>
+                                    <textarea type="text" class="form-control" name="Address_1" id="Address_1"
+                                        placeholder="Address_1" title="enter your Address_1." required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Address_2">
+                                        <h4>Address_2</h4>
+                                    </label>
+                                    <textarea type="" class="form-control" name="Address_2" id="Address_2"
+                                        placeholder="Address_2" title="enter your Address_2." required></textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Distric">
+                                        <h4>Distric</h4>
+                                    </label>
+                                    <input type="text"  class="form-control"
+                                        name="Distric" id="Distric" placeholder="Distric" title="enter your Distric." required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="State">
+                                        <h4>State</h4>
+                                    </label>
+                                    <input type="text"  class="form-control"  name="State" id="State" placeholder="State" title="enter your State." required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Pincode">
+                                        <h4>Pincode</h4>
+                                    </label>
+                                    <input type="text"  class="form-control"
+                                        name="Pincode" id="Pincode" placeholder="Pincode" title="enter your Pincode." required>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Headline">
+                                        <h4>Headline</h4>
+                                    </label>
+                                    <input type="text"  class="form-control"
+                                        name="Headline" id="Headline" placeholder="Headline" title="enter your Headline." required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="About_me">
+                                        <h4>About_me</h4>
+                                    </label>
+                                    <textarea type="text" class="form-control" name="About_me" id="About_me"
+                                        placeholder="About_me" title="enter your About_me." required></textarea>
+                                </div>
+                            </div>
+
+                             
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Website">
+                                        <h4>Website</h4>
+                                    </label>
+                                    <input type="text"  class="form-control"
+                                        name="Website" id="Website" placeholder="Website" title="enter your Website." required>
+                                </div>
+                            </div>
+
+                          
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Twitter">
+                                        <h4>Twitter</h4>
+                                    </label>
+                                    <input type="text"  class="form-control"
+                                        name="Twitter" id="Twitter" placeholder="https://twitter.com/i/flow/login" title="enter your Twitter." required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Instagram">
+                                        <h4>Instagram</h4>
+                                    </label>
+                                    <input type="text"  class="form-control"
+                                        name="Instagram" id="Instagram" placeholder="Instagram" title="enter your Instagram." required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Facebook">
+                                        <h4>Facebook</h4>
+                                    </label>
+                                    <input type="text"  class="form-control"
+                                        name="Facebook" id="Facebook" placeholder="Facebook" title="enter your Facebook." required>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <br>
+                                    <button class="btn btn-theme" type="submit"><i
+                                            class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                    <button class="btn btn-theme" type="reset"><i class="glyphicon glyphicon-repeat" ></i>
+                                        Reset</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <hr>
+
+                    </div><!--/tab-pane-->
+                    <div class="tab-pane" id="messages">
+
+                        <h2></h2>
+
+                        <hr>
+                        <form class="form" action="##" method="post" id="registrationForm">
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Aadharcard_No">
+                                        <h4>Aadharcard_No</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="Aadharcard_No" id="Aadharcard_No"
+                                        placeholder="Aadharcard_No" title="enter your Aadharcard_No if any." required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Aadharcard_File">
+                                        <h4>Aadharcard_File</h4>
+                                    </label>
+                                    <input type="File" class="form-control" accept="image/x-png,image/gif,image/jpeg" name="Aadharcard_File" id="Aadharcard_File"
+                                        placeholder="Aadharcard_File" title="enter your Aadharcard_File if any." required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="Enrollment_No">
+                                        <h4>Enrollment_No</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="Enrollment_No" id="Enrollment_No"
+                                        placeholder="enter Enrollment_No" title="enter your Enrollment_No if any." required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="Id card photo">
+                                        <h4>Id_card_photo</h4>
+                                    </label>
+                                    <input type="File" accept="image/x-png,image/gif,image/jpeg"  class="form-control" name="Id card photo" id="Id card photo"
+                                        placeholder="enter Id card photo" title="enter your Id card photo if any." required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="ABC_Id">
+                                        <h4>ABC_Id</h4>
+                                    </label>
+                                    <input type="ABC_Id" class="form-control" name="ABC_Id" id="ABC_Id"
+                                        placeholder="ABC_Id" title="enter your ABC_Id." required>
+                                </div>
+                            </div>
+                          
+                      
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <br>
+                                    <button class="btn btn-theme" type="submit"><i
+                                            class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                    <button class="btn btn-theme" type="reset"><i class="glyphicon glyphicon-repeat"></i>
+                                        Reset</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div><!--/tab-pane-->
+                    <div class="tab-pane" id="settings">
+                         <form>
+                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                            <label for="vehicle1">Show your profile to logged-in users</label><br>
+                            <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+                            <label for="vehicle2">Show courses you're talking on your profile page</label><br>
+                            
+                            <button class="btn btn-theme" type="submit"><i
+                                class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                          
+                        </form>
+                    </div>
+
+                </div><!--/tab-pane-->
+            </div><!--/tab-content-->
+
+        </div><!--/col-9-->
+    </div><!--/row-->
+
+
+
+  <!-- footer start -->
+  <footer>
+    <div class="footer">
+      <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-lg-3">
+            <div class="footer-item">
+              <h3 class="footer-logo"><span>LMS</span>SYSTEM</h3>
+              <ul>
+                <li><a href="#">about</a></li>
+                <li><a href="#">what we offer</a></li>
+                <li><a href="#">careers</a></li>
+                <li><a href="#">cartificates</a></li>
+                <li><a href="#">blog</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="footer-item">
+              <h3>learning</h3>
+              <ul>
+                <li><a href="#">get the app</a></li>
+                <li><a href="#">testimonials</a></li>
+                <li><a href="#">pricing</a></li>
+                <li><a href="#">faq</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="footer-item">
+              <h3>more</h3>
+              <ul>
+                <li><a href="#">affiliates</a></li>
+                <li><a href="#">become a course creater</a></li>
+                <li><a href="#">traing webinars</a></li>
+                <li><a href="#">free personality test</a></li>
+                <li><a href="#">help and support</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="footer-item">
+              <h3>get in touch</h3>
+              <ul>
+                <li><a href="https://www.facebook.com/shuvo.das.74886"><i class="fab fa-facebook social-icon"></i> facebook</a></li>
+                <li><a href="https://engrshuvodas.github.io/SHUVO-_portfolio/"><i class="fab fa-twitter social-icon"></i> twitter</a></li>
+                <li><a href="https://engrshuvodas.github.io/SHUVO-_portfolio/"><i class="fab fa-instagram social-icon"></i> instagram</a></li>
+                <li><a href="https://www.youtube.com/channel/UCEJ0R871tF2PLT27q9azYWg"><i class="fab fa-youtube social-icon"></i> youtube</a></li>
+                <li><a href="https://www.linkedin.com/in/engr-shuvo-das-a28085260/"><i class="fab fa-linkedin social-icon"></i> linkedin</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="m-0 py-4 text-center">copyright &copy;2023 <a href="https://engrshuvodas.github.io/SHUVO-_portfolio/">LMS TEAM</a></p>
+      </div>
+    </div>
+  </footer>
+  <!-- footer end -->
+
+</div>
+    <!--main warpper end-->
+
+
+
+
+
+
+  <!-- style switcher start -->
+<div class="style-switcher js-style-switcher">
+  <div class="style-switcher-toggler js-style-switcher-toggler">
+    <i class="fas fa-cog"></i>
+  </div>
+  <h3>Style Switcher</h3>
+  <div class="style-switcher-item">
+    <p class="mb-2">Theme Colors</p>
+    <!-- theme colors  -->
+    <div class="theme-colors js-theme-colors">
+      <button type="button" data-js-theme-color="color-1" class="js-theme-color-item color-1"></button>
+      <button type="button" data-js-theme-color="color-2" class="js-theme-color-item color-2"></button>
+      <button type="button" data-js-theme-color="color-3" class="js-theme-color-item color-3"></button>
+      <button type="button" data-js-theme-color="color-4" class="js-theme-color-item color-4"></button>
+      <button type="button" data-js-theme-color="color-5" class="js-theme-color-item color-5"></button>
+    </div>
+  </div>
+  <div class="style-switcher-item">
+    <div class="form-check form-switch">
+      <input class="form-check-input js-dark-mode" type="checkbox" role="switch" id="dark-mode">
+      <label class="form-check-label" for="dark-mode">Dark Mode</label>
+    </div>
+  </div>
+  <div class="style-switcher-item">
+    <div class="form-check form-switch">
+      <input class="form-check-input js-glass-effect" type="checkbox" role="switch" id="glass-effect">
+      <label class="form-check-label" for="glass-effect">Glass Effect</label>
+    </div>
+  </div>
+</div>
+<!-- style switcher end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="js/bootstrap.bundle.min.js"></script>  
+<script src="js/main.js"></script>
+<script src="js/profile.js"></script>
+</body>
+</html>
