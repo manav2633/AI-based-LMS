@@ -31,6 +31,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 
+
 @Controller
 public class UserController {
 
@@ -38,6 +39,10 @@ public class UserController {
     @Autowired
     UserRepository userRepo;
 
+    @Autowired
+    OrganiserRepository organiserRepository;
+
+   
     @Autowired
     ExamRepository examRepository;
 
@@ -54,6 +59,8 @@ public class UserController {
     OptionRepository optionRepository;
     @Autowired
     AnswerRepository answerRepository;
+
+
 
      public List<Question> csvToQuestions(InputStream is, Long examId) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));

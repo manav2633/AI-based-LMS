@@ -16,11 +16,11 @@ public class AppController {
 	public String login() {
 		return "log-in.html";
 	}
-	@GetMapping("/trainee_signup")
-	public String Signup() {
-		return "sign-up.html";
-	}
-	@GetMapping("/courses")
+	// @GetMapping("/trainee_signup")
+	// public String Signup() {
+	// 	return "sign-up.html";
+	// }
+	@GetMapping("/courses.html")
 	public String CourseLogin() {
 		return "courses.html";
 	}
@@ -39,10 +39,7 @@ public class AppController {
 	public String SignUpOrganization() {
 		return "organization_signup.html";
 	}
-	@GetMapping("/sign-up-trainee.html")
-	public String SignUpTrainee() {
-		return "sign-up.html";
-	}
+	
 	@GetMapping("/abcd")
 	public String testing() {
 		return "abc.html";

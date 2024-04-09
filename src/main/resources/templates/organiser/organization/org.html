@@ -88,8 +88,8 @@
 
 												<!--  th:if="${exam.isOver()}" -->
                                                 <td>
-                                                    <!-- <span class="badge badge-primary" th:if="${org.status == true}">Approved</span>
-                                                    <span class="badge badge-warning" th:unless="${org.status == true}">Pending</span> -->
+                                                    <span class="badge badge-primary" th:if="${org.status == true}">Approved</span>
+                                                    <span class="badge badge-warning" th:unless="${org.status == true}">Pending</span>
                                                     <a class="text-success ml-3" th:href="@{/organiser/org/edit(id=${org.organizationId})}"><i class="fa fa-pen"></i></a>
                                                 </td>  
 

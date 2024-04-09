@@ -38,12 +38,23 @@ public class CustomAuthenticationSuccessHandler implements  AuthenticationSucces
 			System.out.println("is nodal officer");
 			return"admindashboard";
 		}
+		if(isTrainee(authentication)) {
+			System.out.println("is Trainee");
+			return"userdashboard";
+		}
 		else{
 			System.out.println("fasssssssw");
 		    return "/error";
 		}
 	}
 	
+	private boolean isTrainee(Authentication authentication) {
+		
+		return authentication.getAuthorities().stream()
+	            .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_trainee"));
+
+	}
+
 	private boolean isNodalofficer(Authentication authentication) {
 		return authentication.getAuthorities().stream()
 	            .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_nodalofficer"));

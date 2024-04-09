@@ -40,6 +40,13 @@ public class AdminController {
       	return "organization_dashboard";
     }
 
+	@GetMapping("userdashboard")
+    public String showUserDashboard(Model model) {
+		System.out.println("user dashboard");
+      	return "userdashboard";
+    }
+
+
 
 
 }

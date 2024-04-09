@@ -3,6 +3,8 @@ package com.exam.portal.Controller;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -41,6 +43,19 @@ public class OrganizationController {
 
 	@Autowired
 	OrganizationRepository repo;
+
+	
+    @GetMapping("/trainee_signup")
+    public String TraineeSignUp(Model model) {
+        List<Organization> organizations = repo.findAll();// Fetch all organizations from the database
+        List<String> organizationNames = organizations.stream()
+                                    .map(Organization::getOrganization_name)
+                                    .collect(Collectors.toList()); // Extract organization names
+        model.addAttribute("organizationNames", organizations);
+       
+        return "sign-up.html";
+    } 
+
 
 	@GetMapping("/organiser/organization")
 	public String showOrg(Model model) {
