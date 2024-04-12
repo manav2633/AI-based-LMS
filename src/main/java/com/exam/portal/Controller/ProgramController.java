@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exam.portal.Model.AdminUser;
+import com.exam.portal.Model.Course;
 import com.exam.portal.Model.NodalOfficer;
 import com.exam.portal.Model.Organization;
 import com.exam.portal.Model.Program;
@@ -48,11 +49,18 @@ public class ProgramController {
 	@Autowired
 	JdbcTemplate template;
 
+	
+
 
 	@GetMapping("/enroll_program")
-	public String EnrollProgram() {
+	public String EnrollProgram(Model model) {
+
+		List<Program> program = programrepo.findAll();
+		model.addAttribute("program", program);
 		return "enroll_program";
 	}
+
+	
 	
 	
 
@@ -61,6 +69,8 @@ public class ProgramController {
 		model.addAttribute("programs",programrepo.findAll());
 		return "organiser/program/program_view";
 	}
+
+	
 	
 
 	@GetMapping("/programcreate")
@@ -109,5 +119,60 @@ public class ProgramController {
 
 		return "redirect:/programview";
 	}
+
+	@GetMapping("/organiser/program/edit")
+    public String editProgram(@RequestParam(name = "id") Integer id, Model model) {
+        Optional<Program> optionalProgram = programrepo.findById(id);
+		
+        if (optionalProgram.isPresent()) {
+            Program program = optionalProgram.get();
+			
+            
+            model.addAttribute("program", program);
+			model.addAttribute("courselist", courserepo.findAll());
+            return "organiser/program/edit_program"; // Assuming this is your edit page
+        } else {
+            // Handle program not found case
+            return "redirect:/programview"; // Assuming you have a Thymeleaf template named programNotFound.html
+        }
 	
+}
+
+@PostMapping("/organiser/program/edit")
+public String saveEditedProgram(@ModelAttribute("program") Program program, 
+                                @RequestParam("selectedCourses") List<Integer> selectedCourses,
+                                Principal principal) {
+    if (program.getId() == null) {
+        // Handle the case where the ID is null
+        // Redirect or show an error message
+        return "redirect:/organiser/dashboard";
+    }
+    
+    Optional<Program> optionalProgram = programrepo.findById(program.getId());
+    if (optionalProgram.isPresent()) {
+        AdminUser adminuser = adminuserrepo.findByEmail(principal.getName());
+        Program existingProgram = optionalProgram.get();
+        existingProgram.setName(program.getName());
+        existingProgram.setDescription(program.getDescription());
+        existingProgram.setDuration(program.getDuration());
+        existingProgram.setCreatorid(adminuser.getId());
+        existingProgram.setCreateddate(new Date());
+        existingProgram.setStatus("Pending");
+        
+        // Update the courses for the program
+        List<Course> updatedCourses = courserepo.findAllById(selectedCourses);
+        existingProgram.setCourses(updatedCourses);
+        
+        programrepo.save(existingProgram);
+    } else {
+        // Handle the case where the program with the given ID does not exist
+        // Redirect or show an error message
+        return "redirect:/organiser/dashboard";
+    }
+    
+    // Redirect to a confirmation page or another appropriate page
+    return "redirect:/programview";
+}
+
+
 }

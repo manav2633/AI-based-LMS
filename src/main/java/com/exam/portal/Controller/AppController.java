@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AppController {
@@ -20,20 +21,18 @@ public class AppController {
 	// public String Signup() {
 	// 	return "sign-up.html";
 	// }
-	@GetMapping("/courses.html")
-	public String CourseLogin() {
-		return "courses.html";
-	}
+	// @GetMapping("/courses.html")
+	// public String CourseLogin() {
+	// 	return "courses.html";
+	// }
 
-	@GetMapping("/courses-details.html")
-	public String CourseDetails() {
-		return "courses-details.html";
-	}
-	@GetMapping("/profile.html")
-	public String Profile() {
-		return "profile.html";
-	}
+	// @GetMapping("/courses-details.html")
+	// public String CourseDetails() {
+	// 	return "courses-details.html";
+	// }
 
+	
+	
 	
 	@GetMapping("/contact.html")
 	public String Contact() {

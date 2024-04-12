@@ -82,6 +82,9 @@
 													<th>Creator Id.</th>
 													<th>Program duration</th>
 													<th>Program Status</th>
+													<th>
+														Action
+													</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -101,6 +104,11 @@
 														<td th:text="${program.creatorid}"></td>
 														<td th:text="${program.duration}" ></td>
 														<td th:text="${program.status}"></td>
+														<td>
+															<!-- <span class="badge badge-primary" th:if="${org.status == true}">Approved</span>
+															<span class="badge badge-warning" th:unless="${org.status == true}">Pending</span> -->
+															<a class="text-success ml-3" th:href="@{/organiser/program/edit(id=${program.id})}"><i class="fa fa-pen"></i></a>
+														</td> 
 													   
 													</tr>
 				

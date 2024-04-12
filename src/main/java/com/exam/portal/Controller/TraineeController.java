@@ -1,5 +1,6 @@
 package com.exam.portal.Controller;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
@@ -48,6 +49,18 @@ public class TraineeController {
         
         return "redirect:/organiserlogin";
     }
+
+    @GetMapping("/profile.html")
+	public String Profile(Model model,Principal principal) {
+
+		String email=principal.getName();
+        System.out.println("email="+email);
+        trainee user=traineeRepository.findByEmail(email);
+		model.addAttribute("user", user);
+		return "profile";
+	}
+
+    
     
 
     

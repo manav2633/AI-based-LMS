@@ -6,4 +6,6 @@ import com.exam.portal.Model.modules;
 
 public interface moduleRepository extends JpaRepository<modules, Integer> {
 
+    modules findByModuleId(Integer id);
+
 }

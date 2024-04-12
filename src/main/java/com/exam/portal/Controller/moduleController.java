@@ -10,10 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exam.portal.Model.AdminUser;
+import com.exam.portal.Model.Course;
 import com.exam.portal.Model.modules;
 import com.exam.portal.Repository.AdminUserRepo;
+import com.exam.portal.Repository.CourseRepository;
 import com.exam.portal.Repository.moduleRepository;
 import com.exam.portal.Repository.topicRepository;
 
@@ -27,7 +30,10 @@ public class moduleController {
 	topicRepository topicrepo;
 
 	@Autowired
-	AdminUserRepo adminuserrepo;;
+	AdminUserRepo adminuserrepo;
+	
+	@Autowired
+	CourseRepository courseRepository;
 	
 	
 	@GetMapping("/organiser/module")
@@ -38,14 +44,16 @@ public class moduleController {
 		model.addAttribute("m",m);
 		
 		
-		 return "organiser/organization/mview";
+		 return "organiser/module/mview";
     }
 	
 	@GetMapping("/organiser/createModule")
 	public String createModules(Model model, modules module){
+		
+		model.addAttribute("course", courseRepository.findAll());
 		model.addAttribute("module", new modules());
 		model.addAttribute("topiclist", topicrepo.findAll());
-		return "organiser/organization/module";
+		return "organiser/module/module";
 	}
 
 	@PostMapping("/registerModule")
@@ -58,5 +66,13 @@ public class moduleController {
 		repo.save(module);
 		return "redirect:/organiser/module";
 	}
+
+	@GetMapping("/organiser/module/edit")
+	public String editExam(@RequestParam(name = "id") Integer id, Model model) {
+		modules mod = repo.findByModuleId(id);
+		model.addAttribute("mod", mod);
+		return "organiser/module/edit_module";
+	}
+
 
 }

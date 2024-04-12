@@ -52,7 +52,7 @@
             </ul>
           </li>
           <li class="menu-item"><a href="./contact.html">Contact</a></li>
-          <li class="menu-item"><a href="./profile.html">Contact</a></li>
+          <li class="menu-item"><a href="./organiser/logout">logout</a></li>
         </ul>
        </nav>
       </div>
@@ -115,19 +115,16 @@
                </div>
             </nav>
 
-
                 <div class="tab-content">
                     <div class="tab-pane active" id="home">
                         <hr>
-                        <form class="form" action="##" method="post" id="registrationForm">
+                        <form class="form" th:object="${user}" th:action="@{/editTrainee}" method="post">
                             <div class="form-group">
-
                                 <div class="col-xs-6">
-                                    <label for="Organization_Id">
+                                    <label for="organizationId">
                                         <h4>Organization-Id</h4>
                                     </label>
-                                    <input type="text" class="form-control" name="Organization_Id" id="Organization_Id"
-                                        placeholder="organization id " title="enter your organization id if any." required>
+                                    <input type="text" class="form-control" name="organizationId" title="enter your organization id if any." required>
                                 </div>
                             </div>
                             <div class="form-group">
