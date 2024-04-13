@@ -42,7 +42,7 @@
             <ul class="menu">
               <li class="menu-item"><a href="/">Home</a></li>
               <li class="menu-item"><a href="/courses">Courses</a></li>
-              <li class="menu-item menu-item menu-item-has-children">
+              <!-- <li class="menu-item menu-item menu-item-has-children">
 
                 <a href="#" class="js-toggle-sub-menu">registration / login<i class="fas fa-chevron-down"></i></a>
                 <ul class="sub-menu js-sub-menu">
@@ -50,8 +50,9 @@
                   <li class="sub-menu-item"><a href="/sign-up.html">Sign up</a></li>
 
                 </ul>
-              </li>
+              </li> -->
               <li class="menu-item"><a href="./contact.html">Contact</a></li>
+              <li class="menu-item"><a href="/organiser/logout">Logout</a></li>
             </ul>
           </nav>
         </div>
@@ -80,8 +81,7 @@
           <div class="col-lg-8">
             <!-- course header start -->
             <div class="course-header box">
-              <h2 class="text-capitalize">Hmtl, CSS Bootstarp for beginners</h2>
-              <div class="rating">
+              <h2 class="text-capitalize" th:text="${courseName}">Course Name</h2>  <div class="rating">
                 <span class="average-rating">(4.5)</span>
                 <span class="average-stars">
                   <i class="fas fa-star"></i>
@@ -129,33 +129,35 @@
                 <div class="course-curriculum box">
                   <h3 class="text-capitalize mb-4">Curriculum</h3>
 
-                  <!-- accordion start -->
-                  <div class="accordion" id="accordion">
-                    <!-- Iterate over modules -->
-                    <div th:each="module : ${module}">
-                      <!-- accordion item start -->
-                      <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading-1">
-                          <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-                            [[${module.moduleName}]] <span>2 lesseons | 20minit</span>
-                          </button>
-                        </h2>
-                        <div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-1"
-                          data-bs-parent="#accordion">
-                          <div class="accordion-body">
-                            <ul>
-                              <li th:each="topic : ${topic}">
-                                <a th:href="@{${topic.getVideo}}"><i  class="fas fa-play-circle"></i></a>
-                                [[${topic.topicName}]]
+                 <!-- accordion start -->
+        <div class="accordion" id="accordion">
+          <!-- Iterate over modules -->
+          <div th:each="module : ${modules}">
+              <!-- accordion item start -->
+              <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading-1">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1"
+                          th:text="${module.moduleName}">Module Name</button>
+                  </h2>
+                  <div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-1"
+                      data-bs-parent="#accordion">
+                      <div class="accordion-body">
+                          <ul>
+                              <!-- Iterate over topics -->
+                              <li th:each="topic : ${module.topics}">
+                                <a  th:href="@{${topic.getVideo}}"> <i class="fas fa-play-circle"></i></a>
+                                
+                                [[${topic.topicName}]] 
                                 <span>06:00</span>
+                                  
                               </li>
                               <!-- End of topic iteration -->
-                            </ul>
-                          </div>
-                        </div>
+                          </ul>
                       </div>
-                      <!-- accordion item end -->
+                  </div>
+              </div>
+              <!-- accordion item end -->
                     </div>
                     <!-- End of module iteration -->
                   </div>

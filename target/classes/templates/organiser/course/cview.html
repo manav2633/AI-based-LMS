@@ -89,6 +89,7 @@
 													<th>Course_Abbreviation</th>
 													<th>Course_Description</th>
 													<th>CreatedDate</th>
+													<th>Action</th>
 													
 												</tr>
 											</thead>
@@ -100,6 +101,11 @@
 													<td th:text="${course.courseAbbrevation}"></td>
 													<td th:text="${course.courseDescription}"></td>
 													<td th:text="${course.createdDate}"></td>
+													<td>
+														<!-- <span class="badge badge-primary" th:if="${org.status == true}">Approved</span>
+														<span class="badge badge-warning" th:unless="${org.status == true}">Pending</span> -->
+														<a class="text-success ml-3" th:href="@{/organiser/course/edit(id=${course.courseId})}"><i class="fa fa-pen"></i></a>
+													</td> 
 													</tr>
 											</tbody>
 											<tfoot>

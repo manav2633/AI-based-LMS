@@ -3,6 +3,7 @@ package com.exam.portal.Controller;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exam.portal.Model.AdminUser;
 import com.exam.portal.Model.Course;
+import com.exam.portal.Model.Topic;
 import com.exam.portal.Model.modules;
 import com.exam.portal.Repository.AdminUserRepo;
 import com.exam.portal.Repository.CourseRepository;
@@ -68,10 +70,52 @@ public class moduleController {
 	}
 
 	@GetMapping("/organiser/module/edit")
-	public String editExam(@RequestParam(name = "id") Integer id, Model model) {
-		modules mod = repo.findByModuleId(id);
-		model.addAttribute("mod", mod);
-		return "organiser/module/edit_module";
+    public String editModule(@RequestParam(name = "id") Integer id, Model model) {
+        Optional<modules> module = repo.findByModuleId(id);
+		
+        if (module.isPresent()) {
+            modules modules = module.get();
+			
+            
+            model.addAttribute("modules", modules);
+			model.addAttribute("topicList", topicrepo.findAll());
+            return "organiser/module/edit_module"; // Assuming this is your edit page
+        } else {
+            // Handle program not found case
+            return "redirect:/organiser/module"; // Assuming you have a Thymeleaf template named programNotFound.html
+        }
+	
+}
+
+
+@PostMapping("/organiser/module/edit")
+public String saveEditedCourse(@ModelAttribute("modules") modules module,
+        @RequestParam("selectedTopic") List<Integer> selectedTopic,
+        Principal principal) {
+		
+
+		Optional<modules> optionalModule = repo.findByModuleId(module.getModuleId());
+		if (optionalModule.isPresent()) {
+			// AdminUser adminuser = adminUserRepo.findByEmail(principal.getName());
+			modules existingModule = optionalModule.get();
+			existingModule.setModuleName(module.getModuleName());
+			existingModule.setWeightage(module.getWeightage());
+			existingModule.setModuleDescription(module.getModuleDescription());
+			existingModule.setCreateddate(new Date());
+
+			// Update the courses for the program
+			List<Topic> updatedTopics = topicrepo.findAllById(selectedTopic);
+			existingModule.setTopics(updatedTopics);
+
+			repo.save(existingModule);
+		} else {
+			// Handle the case where the program with the given ID does not exist
+			// Redirect or show an error message
+			return "redirect:/organiser/dashboard";
+		}
+
+		// Redirect to a confirmation page or another appropriate page
+		return "redirect:/organiser/module";
 	}
 
 

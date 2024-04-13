@@ -89,7 +89,7 @@ public class OrganizationController {
 	@PostMapping("/organiser/organization/accept")
 	public String acceptOrganization(@RequestParam("orgId") int orgId) {
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
-		  String password= RandomString.getAlphaNumericString(8);
+		String password= RandomString.getAlphaNumericString(8);
 		
 		Organization organization = repo.findByOrganizationId(orgId);
          AdminUser adminuser=adminUserRepo.findByEmail(organization.getEmail_id());
