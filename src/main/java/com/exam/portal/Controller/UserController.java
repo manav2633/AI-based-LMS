@@ -235,7 +235,6 @@ public class UserController {
             return false;
         }
     }
-
     @PostMapping("{examCode}/login")
     public String loginUser(@PathVariable(name = "examCode")String examCode,@RequestParam(name = "email")String email,@RequestParam(name = "password")String password,Model model,HttpSession session){
         String redirectUrl="redirect:/"+examCode+"/login";
@@ -317,7 +316,7 @@ public class UserController {
     @GetMapping("user/logout")
     public String logout(HttpSession session){
         session.invalidate();
-        return "redirect:/";
+        return "redirect:/userdashboard";
     }
 
     @GetMapping("{examcode}/instruction")
@@ -372,70 +371,67 @@ public class UserController {
 
         return true;
     }
-
     @GetMapping(value = {"/{examCode}/exam", "/{examCode}/exam/{question_no}"})
-    public String showUserDashboard(HttpSession session, @PathVariable(name = "examCode")String examCode, Model model,@PathVariable(name = "question_no",required = false)Integer question_no){
-        String redirectUrl="redirect:/"+examCode+"/login";
-        
-        try{
-            if(checkValidExamCode(examCode)){
-                if(isLoggedInForExam(session,examCode)){
-                    Long user_id= (Long) session.getAttribute("user_exam_id");
-                    long exam_id= Long.parseLong(examCode.split("-")[1]);
-               
-                    UserExam userExam=userExamRepository.findById(user_id).get();
-                    if(userExam.getStatus()==2){
-                        //Exam Already Submitted
-                        redirectUrl+="?error=3";
-                        throw new Exception();
+    public String showUserDashboard(HttpSession session, @PathVariable(name = "examCode") String examCode, Model model, @PathVariable(name = "question_no", required = false) Integer question_no) {
+        try {
+            if (checkValidExamCode(examCode)) {
+                if (isLoggedInForExam(session, examCode)) {
+                    Long user_id = (Long) session.getAttribute("user_exam_id");
+                    long exam_id = Long.parseLong(examCode.split("-")[1]);
+    
+                    UserExam userExam = userExamRepository.findById(user_id).orElseThrow(() -> new Exception("User exam not found")); // Ensure userExam is present
+                    Exam exam = examRepository.findById(exam_id).orElseThrow(() -> new Exception("Exam not found")); // Ensure exam is present
+    
+                    if (userExam.getStatus() == 2) {
+                        // Exam Already Submitted
+                        return "redirect:/" + examCode + "/final?error=3";
                     }
-                    Exam exam=examRepository.findById(exam_id).get();
-
-                    if(exam.isOver()){
-                        //Exam Over
-                        redirectUrl="redirect:/"+examCode+"/final";
-                        throw new Exception();
+    
+                    if (exam.isOver()) {
+                        // Exam Over
+                        return "redirect:/" + examCode + "/final";
                     }
-                    if(!exam.isStarted()){
-                        //Exam Not started yet
-                        redirectUrl="redirect:/"+examCode+"/instruction";
-                        throw new Exception();
+    
+                    if (!exam.isStarted()) {
+                        // Exam Not started yet
+                        return "redirect:/" + examCode + "/instruction";
                     }
-
+    
                     List<Question> all_questions = exam.getQuestions();
-
-                    if(question_no==null)
-                        question_no=1;
-
+    
+                    if (question_no == null || question_no <= 0 || question_no > all_questions.size()) {
+                        // Invalid question number, redirect to the first question
+                        return "redirect:/" + examCode + "/exam/1";
+                    }
+    
                     Question currentQuestion = all_questions.get(question_no - 1);
-
-                    //Getting Answers
-                    HashMap<Long, Long> answers=new HashMap<>();
-                    for (Question question:all_questions) {
-                        UserAnswer userAnswer=userAnswerRepository.findByUserQuestion(user_id,question.getId());
-                        if(userAnswer!=null){
-                            answers.put(question.getId(),userAnswer.getAnswer().getId());
+    
+                    // Getting Answers
+                    HashMap<Long, Long> answers = new HashMap<>();
+                    for (Question question : all_questions) {
+                        UserAnswer userAnswer = userAnswerRepository.findByUserQuestion(user_id, question.getId());
+                        if (userAnswer != null) {
+                            answers.put(question.getId(), userAnswer.getAnswer().getId());
                         }
                     }
-
-                    model.addAttribute("answers",answers);
-                    model.addAttribute("question",currentQuestion);
-                    model.addAttribute("exam",exam);
-                    model.addAttribute("question_no",question_no);
+    
+                    model.addAttribute("answers", answers);
+                    model.addAttribute("question", currentQuestion);
+                    model.addAttribute("exam", exam);
+                    model.addAttribute("question_no", question_no);
                     return "user/dashboard";
-
-                }else{
-                    throw new Exception();
+                } else {
+                    throw new Exception("User is not logged in for the exam");
                 }
-            }else{
-                throw new Exception();
+            } else {
+                throw new Exception("Invalid exam code");
             }
-        }
-        catch (Exception e){
-            return redirectUrl;
+        } catch (Exception e) {
+            System.out.println("exam error");
+            return "redirect:/exam"; // Redirect to a generic page for any caught exception
         }
     }
-
+    
     @PostMapping("{examcode}/submit")
     public String saveAnswers(HttpSession session,@PathVariable(name = "examcode")String examcode,@RequestParam(name = "answer_id",required = false)Long answer_id,@RequestParam(name = "question_id")Long question_id){
 

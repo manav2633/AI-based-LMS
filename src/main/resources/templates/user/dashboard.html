@@ -63,11 +63,20 @@
                                     </div>
                                     <input type="reset" value="Reset Answer" class="btn btn-danger" onclick="resetRadioButtons()">
                                     <div th:if="${exam.isLastQuestion(question.getId())}" class="d-inline">
-                                        <input type="submit" value="Save" class="btn btn-primary float-right">
+                                        <form th:action="@{'/' + ${exam.getExamCode()} + '/submit'}" method="post">
+                                            <input type="hidden" name="question_id" th:value="${question.getId()}">
+                                            <input type="hidden" name="question_no" th:value="${question_no}">
+                                            <input type="submit" value="Save" class="btn btn-primary float-right">
+                                        </form>
                                     </div>
                                     <div th:unless="${exam.isLastQuestion(question.getId())}" class="d-inline">
-                                        <input type="submit" value="Save and Next" class="btn btn-primary float-right">
+                                        <form th:action="@{'/' + ${exam.getExamCode()} + '/submit'}" method="post">
+                                            <input type="hidden" name="question_id" th:value="${question.getId()}">
+                                            <input type="hidden" name="question_no" th:value="${question_no}">
+                                            <input type="submit" value="Save and Next" class="btn btn-primary float-right">
+                                        </form>
                                     </div>
+                                    
                                 </form>
                             </div>
                         </div>

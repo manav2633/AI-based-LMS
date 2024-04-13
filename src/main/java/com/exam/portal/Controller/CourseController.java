@@ -69,6 +69,7 @@ public class CourseController {
 			Course course = optionalCourse.get();
 			List<modules> modules = course.getModules();
 			model.addAttribute("courseName", course.getCourseName());
+			model.addAttribute("courseDescription", course.getCourseDescription());
 			model.addAttribute("modules", modules);
 			return "courses-details"; // Assuming this is your view name
 		} else {

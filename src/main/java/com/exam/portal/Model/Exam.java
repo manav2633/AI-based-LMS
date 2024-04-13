@@ -143,7 +143,6 @@ public class Exam {
 	public List<Question> getQuestions() {
 		return questions;
 	}
-
 	public String getExamCode(){
 		String[] titleList=this.title.split(" ");
 		StringBuilder Code=new StringBuilder();
@@ -163,19 +162,21 @@ public class Exam {
 
 	public int getNextQuestionNo(Long question_id) {
 		List<Question> questions = this.getQuestions();
-		int i;
-		for (i=0;i<questions.size();i++){
-			if(questions.get(i).getId()==question_id){
-				break;
+		for (int i = 0; i < questions.size(); i++) {
+			if (questions.get(i).getId().equals(question_id)) {
+				if (i == questions.size() - 1) {
+					// Last Question, return the same question number
+					return i + 1;
+				} else {
+					// Return the next question number
+					return i + 2;
+				}
 			}
 		}
-		if(i==questions.size()-1){
-			return 1;
-			//Last Question
-		}else{
-			return i+2;
-		}
+		// Question not found, return 1 as default
+		return 1;
 	}
+	
 	public boolean isLastQuestion(Long question_id){
 		List<Question> questions_list = this.getQuestions();
 		return questions_list.get(questions_list.size() - 1).getId().equals(question_id);

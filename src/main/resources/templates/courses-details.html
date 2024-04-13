@@ -81,7 +81,8 @@
           <div class="col-lg-8">
             <!-- course header start -->
             <div class="course-header box">
-              <h2 class="text-capitalize" th:text="${courseName}">Course Name</h2>  <div class="rating">
+              <h2 class="text-capitalize" th:text="${courseName}">Course Name</h2>
+              <div class="rating">
                 <span class="average-rating">(4.5)</span>
                 <span class="average-stars">
                   <i class="fas fa-star"></i>
@@ -129,35 +130,35 @@
                 <div class="course-curriculum box">
                   <h3 class="text-capitalize mb-4">Curriculum</h3>
 
-                 <!-- accordion start -->
-        <div class="accordion" id="accordion">
-          <!-- Iterate over modules -->
-          <div th:each="module : ${modules}">
-              <!-- accordion item start -->
-              <div class="accordion-item">
-                  <h2 class="accordion-header" id="heading-1">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1"
-                          th:text="${module.moduleName}">Module Name</button>
-                  </h2>
-                  <div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-1"
-                      data-bs-parent="#accordion">
-                      <div class="accordion-body">
-                          <ul>
+                  <!-- accordion start -->
+                  <div class="accordion" id="accordion">
+                    <!-- Iterate over modules -->
+                    <div th:each="module : ${modules}">
+                      <!-- accordion item start -->
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-1">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1"
+                            th:text="${module.moduleName}">Module Name</button>
+                        </h2>
+                        <div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-1"
+                          data-bs-parent="#accordion">
+                          <div class="accordion-body">
+                            <ul>
                               <!-- Iterate over topics -->
                               <li th:each="topic : ${module.topics}">
-                                <a  th:href="@{${topic.getVideo}}"> <i class="fas fa-play-circle"></i></a>
-                                
-                                [[${topic.topicName}]] 
+                                <a th:href="@{${topic.getVideo}}"> <i class="fas fa-play-circle"></i></a>
+
+                                [[${topic.topicName}]]
                                 <span>06:00</span>
-                                  
+
                               </li>
                               <!-- End of topic iteration -->
-                          </ul>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
-                  </div>
-              </div>
-              <!-- accordion item end -->
+                      <!-- accordion item end -->
                     </div>
                     <!-- End of module iteration -->
                   </div>
@@ -170,18 +171,14 @@
               <div class="tab-pane fade" id="course-description" role="tabpanel"
                 aria-labelledby="course-description-tab">
                 <div class="course-description box">
-                  <h3 class="text-capitalize mb-4">description</h3>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, tenetur voluptatibus
-                    voluptatum eius nihil quibusdam soluta nulla, neque harum ad illo ex? Tempora, doloremque
-                    consectetur. Beatae natus incidunt quis autem?</p>
-                  <h4>For Who is this course designed ?</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora repellat fugit, dolore saepe a
-                    possimus aliquam suscipit eaque architecto nam eum, ab doloremque maiores unde nisi veniam
-                    consectetur! Officiis, veniam.</p>
-                  <h4>Why should you take this course ?</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit dignissimos iusto consectetur magni
-                    aspernatur distinctio consequuntur! Libero nesciunt quasi, alias praesentium maxime quia animi.
-                    Suscipit labore dolorum repudiandae neque aliquam.</p>
+                  <h3 class="text-capitalize mb-4">Course description</h3>
+
+                  <h4 th:text="${courseDescription}"></h4>
+                </br>
+
+                  <h3 class="text-capitalize mb-4">Module Description</h3>
+                  <p th:each="module : ${modules}" th:text="${module.moduleDescription}"></p>
+
                 </div>
               </div>
               <!-- course description end -->
@@ -222,7 +219,7 @@
                         </div>
                       </div>
                       <div class="right-box">
-                        <h4>shuvo das <span>(web developer)</span></h4>
+                        <h4>Tejas Sukh<span>(web developer)</span></h4>
                         <ul>
                           <li><i class="fas fa-star"></i> 4.5 Rating</li>
                           <li><i class="fas fa-play-circle"></i> 10 Courses</li>
