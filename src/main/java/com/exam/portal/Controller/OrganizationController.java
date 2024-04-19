@@ -83,7 +83,7 @@ public class OrganizationController {
 		// Save the organization to the database
 		repo.save(organization);
 		// Redirect to a success page or return a success message
-		return "redirect:/admindashboard";
+		return "redirect:/sign-up.html";
 	}
 
 	@PostMapping("/organiser/organization/accept")
