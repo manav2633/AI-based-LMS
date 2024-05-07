@@ -22,4 +22,8 @@ public interface OrganizationRepository extends JpaRepository<Organization, Inte
 
     @Query(nativeQuery=true, value="SELECT * FROM register_organization WHERE email_id=?1 ")
     Organization findByEmail_Id(String email_id);
+
+    List<Organization> findByStatus(boolean i);
+
+    
 }

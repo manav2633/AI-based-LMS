@@ -36,6 +36,14 @@ public class TraineeController {
         return "trainee/trainee_view";
     }
 
+    @GetMapping("/registerUser")
+	public String RegisterUser(Model model) {
+		List<trainee> trainee= traineeRepository.findAll();
+        model.addAttribute("trainee",trainee);
+	
+		return "trainee/organization_user";
+	}
+
     @PostMapping("/trainee_sign_up")
     public String TraineeSignup(@ModelAttribute trainee trainee) {
         AdminUser org=new AdminUser();

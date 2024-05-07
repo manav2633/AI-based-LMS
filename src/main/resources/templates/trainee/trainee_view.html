@@ -31,12 +31,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Registered Organization</h1>
+                        <h1>Registered Trainee</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/organiser/dashboard">Home</a></li>
-                            <li class="breadcrumb-item active">Organization</li>
+                            <li class="breadcrumb-item active">Trainee</li>
                         </ol>
                     </div>
                 </div>
@@ -63,35 +63,31 @@
                                <table id="examList" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th>Select</th>
+												
 												<th>Id</th>
 												<th>Name</th>
-												<th>ContactNo</th>
 												<th>Email</th>
-												<th>Registration Date</th>					
-												<th>Action</th>
+												
+												<th>organizationId</th>					
+												
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:each="org : ${org}">
-												<td><input type="checkbox" class="checkbox" name="cid"
-													th:value="${org.organizationId}"></td>
+											<tr th:each="trainee : ${trainee}">
+											
 
-												<td>
-													<a
-													th:href="@{'/organiser/organization/view/' + ${org.organizationId}}"
-													th:text="${org.organizationId}"></a></td>
-												<td th:text="${org.organization_name}"></td>
-												<td th:text="${org.contact_no}"></td>
-												<td th:text="${org.email_id}"></td>
-												<td th:text="${org.registered_date}"></td>
+												<td th:text="${trainee.id}"></a></td>
+												<td th:text="${trainee.name}"></td>
+												<td th:text="${trainee.email}"></td>
+												<td ><a th:href="@{'/organiser/trainee/view/' + ${trainee.organizationId}}" th:text="${trainee.organizationId}"></td>
+											
 
 												<!--  th:if="${exam.isOver()}" -->
-                                                <td>
+                                                <!-- <td>
                                                     <span class="badge badge-primary" th:if="${org.status == true}">Approved</span>
                                                     <span class="badge badge-warning" th:unless="${org.status == true}">Pending</span>
                                                     <a class="text-success ml-3" th:href="@{/organiser/org/edit(id=${org.organizationId})}"><i class="fa fa-pen"></i></a>
-                                                </td>  
+                                                </td>   -->
 
 											</tr>
 

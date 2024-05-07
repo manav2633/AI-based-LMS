@@ -45,17 +45,21 @@ public class OrganizationController {
 	OrganizationRepository repo;
 
 	
-    @GetMapping("/trainee_signup")
-    public String TraineeSignUp(Model model) {
-        List<Organization> organizations = repo.findAll();// Fetch all organizations from the database
-        List<String> organizationNames = organizations.stream()
+	@GetMapping("/trainee_signup")
+	public String TraineeSignUp(Model model) {
+		// Fetch organizations with status 1 from the database
+		List<Organization> organizations = repo.findByStatus(true);
+	
+	    List<String> organizationNames = organizations.stream()
                                     .map(Organization::getOrganization_name)
                                     .collect(Collectors.toList()); // Extract organization names
         model.addAttribute("organizationNames", organizations);
-       
-        return "sign-up.html";
-    } 
-
+	
+		return "sign-up.html";
+	}
+	
+	
+	
 
 	@GetMapping("/organiser/organization")
 	public String showOrg(Model model) {
@@ -150,6 +154,19 @@ public class OrganizationController {
 			System.out.println("not shown view");
 		}
 		return "organiser/organization/oview";
+	}
+
+	@GetMapping("/organiser/trainee/view/{id}")
+	public String viewTrainee(@PathVariable("id") Integer id, Model model) {
+
+		Organization org = repo.findByOrganizationId(id);
+		System.out.println(org);
+		if (org != null) {
+			model.addAttribute("org", org);
+		} else {
+			System.out.println("not shown view");
+		}
+		return "trainee/trainee_org_view";
 	}
 
 	// @PostMapping("/organiser/organization/edit")
