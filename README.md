@@ -272,26 +272,4 @@ We welcome contributions! Please follow these steps:
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 📞 Support & Contact
-
-For questions, suggestions, or support:
-
-- 📧 **Email**: your.email@example.com
-- 🐙 **GitHub**: [Your Profile](https://github.com/your-username)
-- 🔗 **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
-
----
-
-## ⭐ Show Your Support
-
-If this project helped you, please give it a ⭐ on GitHub!
-
----
-
 **Happy Learning! 🎓**
